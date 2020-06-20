@@ -10,14 +10,14 @@ public class FileInputStreamTest {
     public static void main(String[] args) {
         try {
             FileInputStream fis = new FileInputStream("./src/com/didi/io/FileInputStreamTest.java");
-       byte[] bbuf = new byte[1024] ;
-       int hasRead = 0 ;
-       while ((hasRead =fis.read(bbuf))>0){
+            byte[] bbuf = new byte[1024];
+            int hasRead = 0;
+            while ((hasRead = fis.read(bbuf)) > 0) {
 
-           System.out.println(new String(bbuf,0,hasRead));
+                System.out.println(new String(bbuf, 0, hasRead));
 
-       }
-       fis.close();
+            }
+            fis.close();
 
 
         } catch (IOException e) {
