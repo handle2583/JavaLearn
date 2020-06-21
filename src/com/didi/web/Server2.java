@@ -13,10 +13,8 @@ public class Server2 {
     public void init(){
         ServerSocket ss = null ;
         try{
-
             ss = new ServerSocket(SERVER_PORT);
             while (true){
-
                 Socket s = ss.accept();
                 new ServerThread2(s).start();
             }

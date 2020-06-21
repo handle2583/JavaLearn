@@ -3,6 +3,7 @@ package com.didi.web;
 import java.util.*;
 
 public class YeekuMap<K, V> extends HashMap<K, V> {
+
     public void removeByValue(Object value) {
 
         for (Object key : keySet()) {
@@ -33,13 +34,14 @@ public class YeekuMap<K, V> extends HashMap<K, V> {
         for (K key : keySet()) {
 
             if (get(key).equals(val) && get(key) == val) {
-
+                System.out.println(key);
                 return key;
             }
         }
         return null;
     }
 
+    @Override
     public V put(K key, V value) {
 
 
