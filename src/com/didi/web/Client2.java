@@ -18,7 +18,9 @@ public class Client2 {
 
     public void init() {
         try {
+            //从键盘获取输入流 针对于主线程 客户端的输入就是输入流
             keyIn = new BufferedReader(new InputStreamReader(System.in));
+            //建立socket
             socket = new Socket("127.0.0.1", SERVER_PORT);
             //输出流
             ps = new PrintStream(socket.getOutputStream());
@@ -26,14 +28,14 @@ public class Client2 {
             brServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String tip = "";
             while (true) {
-
+                //输入框获取用户名
                 String userName = JOptionPane.showInputDialog(tip + "输入用户名");
                 System.out.println(YeekuProtocol.USER_ROUND + userName + YeekuProtocol.USER_ROUND);
+                //输出流中 USER_ROUND+用户名 + USER_ROUND
                 ps.println(YeekuProtocol.USER_ROUND + userName + YeekuProtocol.USER_ROUND);
-
+                //读取服务端返回的结果  对于客户端来说是输入流
                 String result = brServer.readLine();
                 if (result.equals(YeekuProtocol.NAME_REP)) {
-
                     tip = "用户名重复！请重新输入";
                     continue;
                 }
@@ -61,9 +63,7 @@ public class Client2 {
         try {
             String line = null;
             while ((line = keyIn.readLine()) != null) {
-
                 if (line.indexOf(":") > 0 && line.startsWith("//")) {
-
                     line = line.substring(2);
                     ps.println(YeekuProtocol.PRIVATE_ROUND + line.split(":")[0] + YeekuProtocol.SPLIT_SIGN + line.split(":")[1] + YeekuProtocol.PRIVATE_ROUND);
                 } else {
